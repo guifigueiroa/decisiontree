@@ -45,3 +45,5 @@ Temporary Items
 
 # matlab open files
 *.asv
+tfidfSparseDF5.txt
+classesDF5.txt

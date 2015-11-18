@@ -1,5 +1,8 @@
 function [ Y ] = classify( N, X )
     
+    % FIX LATER
+    Y = 0;
+    
     % if leaf node, class found
     if N.leaf == true
         Y = N.class;
