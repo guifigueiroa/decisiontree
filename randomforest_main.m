@@ -1,21 +1,24 @@
-load iris.data
+%load iris.data
 
-X = sparse(iris(:,1:4));
-Y = iris(:,5:5);
+%X = sparse(iris(:,1:4));
+%Y = iris(:,5:5);
 
 % Discretize variables (all)
-for i=1:size(X,2)
-    X(:,i) = discretize(X(:,i),Y);
-end
+%for i=1:size(X,2)
+%    X(:,i) = discretize(X(:,i),Y);
+%end
 
-[training_data, training_classes, testing_data, testing_classes] = holdout(X,Y);
+%[training_data, training_classes, testing_data, testing_classes] = holdout(X,Y);
 
 % define quantity of random trees
-B = 500;
-randomForest = cell(B,1);
+%B = 50;
+%randomForest = cell(B,1);
 
 % TRAINING
-for i=1:B
+for i=12:B
+    disp('Training tree');
+    i
+    
     % Sample with replacement using bootstrap
     [sampleX, sampleY] = bootstrap(training_data, training_classes);
     
@@ -24,8 +27,9 @@ for i=1:B
 end
 
 % TESTING
-accuracy = zeros(length(testing_data),1);
-for j=1:length(testing_data)
+accuracy = zeros(size(testing_data,1),1);
+disp('Testing forest');
+for j=1:size(testing_data,1)
     classes = zeros(B,1);
     for i=1:B
         % classify data

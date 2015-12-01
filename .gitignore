@@ -47,3 +47,4 @@ Temporary Items
 *.asv
 tfidfSparseDF5.txt
 classesDF5.txt
+tfidfSparseDF5.txt

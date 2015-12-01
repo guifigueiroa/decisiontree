@@ -1,6 +1,6 @@
 function [X,Y] = bootstrap(X,Y)
 
-    randIndexes = ceil(length(X) * rand(length(X),1));
+    randIndexes = ceil(size(X,1) * rand(size(X,1),1));
     X = X(randIndexes,:);
     Y = Y(randIndexes,:);
     
