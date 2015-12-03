@@ -3,19 +3,28 @@
 %X = sparse(iris(:,1:4));
 %Y = iris(:,5:5);
 
-% Discretize variables (all)
-%for i=1:size(X,2)
-%    X(:,i) = discretize(X(:,i),Y);
-%end
+% Load tf-idf sparse table
+X = load('tfidfSparse15-1000.txt');
+X = spconvert(X);
 
-%[training_data, training_classes, testing_data, testing_classes] = holdout(X,Y);
+% Load classes
+Y = load('classes15-1000.txt');
+
+% Discretize variables (all)
+for i=1:size(X,2)
+    disp('Discretizando campos');
+    i
+    X(:,i) = discretize(X(:,i),Y);
+end
+
+[training_data, training_classes, testing_data, testing_classes] = holdout(X,Y);
 
 % define quantity of random trees
-%B = 50;
-%randomForest = cell(B,1);
+B = 10;
+randomForest = cell(B,1);
 
 % TRAINING
-for i=12:B
+for i=1:B
     disp('Training tree');
     i
     
@@ -31,6 +40,7 @@ accuracy = zeros(size(testing_data,1),1);
 disp('Testing forest');
 for j=1:size(testing_data,1)
     classes = zeros(B,1);
+    j
     for i=1:B
         % classify data
         classes(i) = classify(randomForest{i},testing_data(j,:));
@@ -39,4 +49,4 @@ for j=1:size(testing_data,1)
     accuracy(j) = testing_classes(j) == mode(classes);
 end
 
-accuracy = sum(accuracy)/length(accuracy)
+sum_accuracy = sum(accuracy)/length(accuracy)

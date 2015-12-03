@@ -19,7 +19,7 @@ function [N] = decisiontree_training(X, Y, originalX, attribute_list)
     end
     
     % if attribute list is empty
-    if sum(attribute_list) == 0 || length(X) < 300
+    if sum(attribute_list) == 0 || length(X) < 500
        N.class = mode(Y);
        N.leaf = true;
        return;

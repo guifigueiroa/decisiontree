@@ -5,7 +5,7 @@ if nargin < 3
 end
 
 % Set minimum tuples for each class
-if length(attribute) < 50
+if length(attribute) < 2500
     return;
 end
 
